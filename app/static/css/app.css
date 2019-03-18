@@ -1,3 +1,168 @@
+.navbar{
+    font-weight: 500;
+}
+
 body {
     padding-top: 5rem;
+    background-color: #ccf3ff;
 }
+
+.prof_pic { 
+    grid-area: header; 
+    
+}
+
+.pname { 
+    grid-area: menu; 
+}
+
+.pgender { 
+    grid-area: main; 
+}
+
+.ploc { 
+    grid-area: right; 
+}
+
+.view-bttn { 
+    grid-area: left; 
+}
+
+.pgrid-container {
+    display: grid;
+    grid-template-areas:
+        'header menu menu menu left left'
+        'header main main main left left'
+        'header right right right left left';
+    grid-gap: 10px;
+    background-color: white;
+    padding: 10px;
+    border-radius: 20px 20px 20px 20px;
+    border-top: 5px solid #007bff;
+    
+}
+
+.prof_pic_im{
+    width: 150px;
+    height: 150px;
+    display: block;
+    margin: auto;
+    border-radius:50%;
+
+}
+
+.iconp{
+    height: 20px;
+    width: 20px;
+    margin-right: 10px;
+}
+
+.prof_btn, .add_user{
+    border-radius: 7px;
+    color:white;
+    background-color:limegreen;
+    font-weight: 500;
+    border:none;
+    
+}
+
+.view-bttn{
+    display: block;
+    margin: auto;
+    margin-top:40px;
+}
+
+/*individual profile*/
+
+.upic { 
+    grid-area: pic; 
+    
+}
+
+.uname { 
+    grid-area: name; 
+}
+
+.uemail { 
+    grid-area: mail; 
+}
+
+.uloca { 
+    grid-area: loca; 
+}
+
+
+.udate { 
+    grid-area: date; 
+}
+
+.ubio { 
+    grid-area: bio; 
+}
+
+.usend { 
+    grid-area: send;
+    display: block;
+    margin: auto;
+}
+
+.ufoll { 
+    grid-area: foll;
+    display: block;
+    margin: auto;
+}
+
+.ugrid-container {
+    width: 800px;
+    margin: auto;
+    display: grid;
+    grid-template-areas:
+        'pic name'
+        'pic mail'
+        'pic loca'
+        'pic date'
+        'bio bio'
+        'send foll';
+    grid-gap: 10px;
+    background-color: white;
+    padding: 10px 30px;
+    border-radius: 20px 20px 20px 20px;
+    border-top: 5px solid #007bff;
+    font-size: 1.1em;
+    
+}
+
+.send_btn{
+    width: 150px;
+    border-radius: 7px;
+    color:white;
+    background-color:limegreen;
+    font-weight: 500;
+    border:none;
+}
+
+.foll_btn{
+    width: 150px;
+    border-radius: 7px;
+    color:white;
+    background-color:#007bff;
+    font-weight: 500;
+    border:none;
+}
+
+.uimg{
+    width: 200px;
+    height: 200px;
+    display: block;
+    margin: auto;
+    border-radius:50%;
+}
+
+
+
+
+
+
+
+
+

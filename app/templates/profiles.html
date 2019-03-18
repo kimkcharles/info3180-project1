@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block main %}
+
+{% include 'flash_messages.html' %}
+<div>
+    <h1>Profiles</h1>
+</div>
+{% for user in users %}
+<div class = "pgrid-container">
+    <div class = "prof_pic">
+        <img class = "prof_pic_im" src = "{{url_for('static',filename = 'profile_pics/' + user.profilePic)}}">
+    </div>
+    <div class = "pname">
+        <h4>{{user.first_name}} {{user.last_name}}</h4>
+    </div>
+    <div class = "pgender">
+        <p><img class = "iconp" src = "{{url_for('static',filename = 'icons/person.png')}}">{{user.gender}}</p>
+    </div>
+    <div class = "ploc">
+        <p><img class = "iconp" src = "{{url_for('static',filename = 'icons/location.png')}}">{{user.location}}</p>
+    </div>
+    <div class = "view-bttn">
+        <a href = "{{url_for('userProfile',userid = user.userid)}}">
+            <button class ="prof_btn">View Profile</button>
+        </a>
+    </div>
+</div>
+<br>
+{% endfor %}
+
+{% endblock %}

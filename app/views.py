@@ -5,6 +5,8 @@ Werkzeug Documentation:  http://werkzeug.pocoo.org/documentation/
 This file creates your application.
 """
 
+import os
+from werkzeug.utils import secure_filename
 from app import app, db
 from flask import render_template, request, redirect, url_for, flash
 from app.forms import ProfileForm
@@ -28,6 +30,11 @@ def about():
     return render_template('about.html')
 
 
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in app.config['ALLOWED_EXTS']
+
+
 @app.route('/profile',methods = ["GET","POST"])
 def profile():
     """Render the website's profile page"""
@@ -42,9 +49,9 @@ def profile():
         location   = form.location.data
         email      = form.email.data
         bio        = form.biography.data
-        date       = datetime.datetime.now().strftime("%B %d, %Y")
+        date       = datetime.datetime.now()
         image      = form.image.data
-        imageName  = first_name + last_name + str(user_no)
+        imageName  = first_name + last_name + str(user_no) + ".png"
         
         # file = form.upload.data
         # filename = secure_filename(file.filename)
@@ -60,7 +67,10 @@ def profile():
                                 profilePic = imageName)
         db.session.add(new_user)
         db.session.commit()
-        image.save("app/static/profilepictures/" + imageName + ".png")
+        
+        image.save(os.path.join(app.config['UPLOAD_FOLDER'],imageName))
+        
+        # image.save("app/static/profilepictures/" + imageName + ".png")
         
         flash("New User Profile Created", "success")
         return redirect(url_for("profiles"))
@@ -70,16 +80,16 @@ def profile():
 
 @app.route('/profile/<userid>')
 def userProfile(userid):
-    """Dsiplay user Profile given the user ID"""
-    user = UserProfile.query.filter_by(id = userid).first()
-    return render_template('userprofile.html',user = user,date = format_date(user.created_on))
+    """Display individual user profile given the userid"""
+    user = UserProfile.query.filter_by(userid = userid).first()
+    return render_template('userprofile.html',user = user, date= user.created_on.strftime("%B %d, %Y"))
 
 
 @app.route('/profiles')
 def profiles():
     """Render the website's list of profiles"""
     users = UserProfile.query.all()
-    return render_template("profiles.html",users = users)
+    return render_template("profiles.html", users = users)
 
 
 ###

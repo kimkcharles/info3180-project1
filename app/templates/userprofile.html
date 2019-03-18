@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block main %}
+
+{% include 'flash_messages.html' %}
+<div class = "ugrid-container">
+    <div class = "upic">
+        <img class = "uimg" src = "{{url_for('static',filename = 'profile_pics/' + user.profilePic)}}">
+    </div>
+    <div class = "uname">
+        <h4>{{user.first_name}} {{user.last_name}}</h4>
+    </div>
+    <div class = "uemail">
+        <p><img class = "iconp" src = "{{url_for('static',filename='icons/mail.png')}}">{{user.email}}</p>
+    </div>
+    <div class = "uloca">
+        <p><img class = "iconp" src = "{{url_for('static',filename='icons/location.png')}}">{{user.location}}</p>
+    </div>
+    <div class = "udate">
+        <p><img class = "iconp" src = "{{url_for('static',filename='icons/calendar.png')}}">Joined on {{date}}</p>
+    </div>
+    <div class = "ubio">
+        <h5>About Me</h5>
+        <p>
+            {{user.biography}}
+        </p>
+    </div>
+    <div class = "usend">
+        <button class = "send_btn">Send Message</button>
+    </div>
+    <div class = "ufoll">
+        <button class = "foll_btn" >Follow</button>
+    </div>
+</div>
+{% endblock %}
